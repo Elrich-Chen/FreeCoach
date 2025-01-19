@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, flash
 import os
 from werkzeug.utils import secure_filename
+from utilities.pose_predict import predict_video
 
 app = Flask(__name__)
 
@@ -8,6 +9,9 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'mp4', 'avi', 'mov', 'mkv'}
 app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
+app.config['SECRET_KEY']= "auwsdeyjfvjueryuebu"
+
+filename = ""
 
 # Ensure the uploads folder exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -20,7 +24,12 @@ def allowed_file(filename):
 @app.route('/')
 def index():
     videos = os.listdir(app.config['UPLOAD_FOLDER'])
+    return render_template('index.html', video = filename)
+
+@app.route('/predict')
+def predict():
     return render_template('index.html', videos=videos)
+
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -32,7 +41,13 @@ def upload_file():
     if video and allowed_file(video.filename):
         filename = secure_filename(video.filename)
         video.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect(url_for('index'))
+        
+        prediction, confidence = predict_video(f"uploads/{filename}")
+        print(f"\n\n\n\n\n\n\nPrediction: {prediction}")
+        print(f"Confidence: {confidence:.2f}")
+        flash(f"Prediction: {prediction}")
+        flash(f"Confidence: {confidence:.2f}")
+
     return redirect(url_for('index'))
 
 @app.route('/uploads/<filename>')
