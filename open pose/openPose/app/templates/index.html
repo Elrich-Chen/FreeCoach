@@ -13,7 +13,7 @@
 
 <body>
     <div class="left-col">
-        <h1>FreeCoach</h1>
+        <img src="{{url_for('static', filename='logo.png')}}" alt="" width="250" height="250">
 
         <div class="video">
             {% if video %}
@@ -46,20 +46,43 @@
     <div class="border"></div>
 
     <div class="right-col">
+        <h1>Free Coach Analysis</h1>
         <div class="output">
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-               
-            
-                        <video controls>
-                            <source src="{{ url_for('uploaded_file', filename='predict.mp4') }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    
+
+
+            <video controls>
+                <source src="{{ url_for('uploaded_file', filename='predict.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            {% else %}
+            <img src="{{ url_for('static', filename='coach_white.png') }}">
+            <p>Coach is waiting...</p>
+
             {% endif %}
             {% endwith %}
         </div>
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flex-container">
+        <div class="flex-item">
+            <h2>Throw</h2>
+            <p>{{messages[0]}}</p>
+        </div>
+        <div class="flex-item">
+            <h2>Confidence</h2>
+            <p>{{messages[1]}} %</p>
+        </div>
+        <div class="flex-item">
+            <p>Your shooting is good ! But try to Place your shooting-side foot slightly ahead of the other and align it with the center of the hoop for better balance.    </p>
+        </div>
     </div>
+    {% endif %}
+    {% endwith %}
+    </div>
+
+    
 
     <script>
         document.getElementById('video').addEventListener('change', function () {

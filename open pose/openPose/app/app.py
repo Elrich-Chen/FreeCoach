@@ -40,8 +40,8 @@ def upload_file():
         prediction, confidence = predict_video(f"uploads/{filename}")
         print(f"\n\n\n\n\n\n\nPrediction: {prediction}")
         print(f"Confidence: {confidence:.2f}")
-        flash(f"Prediction: {prediction}")
-        flash(f"Confidence: {confidence:.2f}")
+        flash(f"{prediction}")
+        flash(f"{confidence:.2f}")
         return render_template('index.html', video = filename, predict_video = "predict.mp4")
 
     return redirect(url_for('index'))
