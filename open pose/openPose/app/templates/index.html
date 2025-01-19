@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Uploader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Londrina+Sketch&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="left-col">
+        <h1>FreeCoach</h1>
+    
+    <div class="video">
+        {% if videos %}
+            <ul>
+            {% for video in videos %}
+                <li>
+                    <p>{{ video }}</p>
+                    <video width="320" height="240" controls>
+                        <source src="{{ url_for('uploaded_file', filename=video) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        <div class="empty">
+            <img src="{{ url_for('static', filename='upload.png') }}">
+        </div>
+        <p>No videos uploaded yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Upload Form -->
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="video">Choose File</label>
+        <input id="video" placeholder="Video :" type="file" name="video" accept="video/*" required>
+        <span id="file-name">No file selected</span>
+        <button type="submit">Analyse</button>
+    </form>
+    </div>
+
+    <div class="border"></div>
+
+    <div class="right-col">
+        <div class="output">THIS IS WHERE THE OUTPUT GOES</div>
+    </div>
+    
+    <script>
+        document.getElementById('video').addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                document.getElementById('file-name').textContent = this.files[0].name;
+                document.getElementById('file-name').classList.add("space");
+            }
+        });
+    </script>
+</body>
+</html>

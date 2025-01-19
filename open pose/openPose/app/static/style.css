@@ -1,0 +1,171 @@
+/* static/style.css */
+
+/* Body and general layout */
+body {
+    font-family: 'KoHo', sans-serif;
+    background-color: #2a2a2a; /* Lighter background for a court feel */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.left-col{
+    flex: 1;
+    text-align: center;
+}
+
+.border{
+    height: 100vw;
+    background-color: #535353;
+    width: 5px;
+    position: absolute;
+}
+
+/* Title */
+h1 {
+    color: #f4a261; /* Basketball orange color */
+    font-size: 2.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* Upload form styling */
+form {
+    font-family: 'KoHo', sans-serif;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    width: 500px;
+    max-width: 500px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: auto;
+}
+
+label{
+    font-family: 'KoHo', sans-serif;
+    font-size: 16px;
+    padding: 8px;
+    background-color: #f4a261; /* Basketball orange */
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    padding: 10px;
+    margin-right: 10px;
+    &:hover{
+        background-color: #d48e54; /* Basketball orange */
+    }
+}
+
+#file-name{
+    color: #fff;
+    margin-right: 160px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+button {
+    margin-left: 10px;
+    font-family: 'KoHo', sans-serif;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #2d6a4f; /* Basketball team green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1b4d36; /* Darker green on hover */
+}
+
+.video{
+    min-height: 300px; 
+    width: 500px;
+    background-color: #535353;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+/* Video list section */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+ul li {
+    background-color: #fff;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+video {
+    margin: 15px 0;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border: 2px solid #f4a261; /* Border in orange to match theme */
+}
+
+p {
+    color: #ffffff; /* Green text for consistency */
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: 200;
+    text-align: center;
+}
+
+/* Additional styling for a basketball feel */
+ul li::before {
+    content: "🏀"; /* Add a basketball emoji before each video title */
+    font-size: 24px;
+    margin-right: 10px;
+    color: #f4a261;
+}
+
+button:focus, input[type="file"]:focus {
+    outline: 2px solid #f4a261; /* Orange focus outline */
+}
+
+.empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.right-col{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color:white;
+    .output{
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        width: 80%;
+        background-color: #535353;
+    }
+}
+
