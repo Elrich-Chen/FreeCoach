@@ -121,6 +121,8 @@ def extract_keypoints(video_path):
     cap.release()
     out.release()
 
+    pose.close()
+    
     # Notify user that the video is saved
     print(f"Video saved to {output_video}")
     print(f"Total keypoints detected: {len(keypoints_sequence)}")
@@ -143,7 +145,7 @@ def extract_keypoints_predict(video_path):
     # Create VideoWriter object to save the output video
     output_video = f"uploads/predict.mp4"   # Output file name
     print("\n\n\n\n\n Output video: ", output_video)
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for MP4 format
+    fourcc = cv2.VideoWriter_fourcc(*'avc1')  # Codec for MP4 format
     out = cv2.VideoWriter(output_video, fourcc, fps, (frame_width, frame_height))
 
     while cap.isOpened():
@@ -182,7 +184,7 @@ def extract_keypoints_predict(video_path):
 
     cap.release()
     out.release()
-
+    pose.close()
     # Notify user that the video is saved
     print(f"Video saved to {output_video}")
     print(f"Total keypoints detected: {len(keypoints_sequence)}")

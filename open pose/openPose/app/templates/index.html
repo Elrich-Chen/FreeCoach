@@ -16,9 +16,8 @@
         <h1>FreeCoach</h1>
 
         <div class="video">
-            {% if videos %}
+            {% if video %}
             <ul>
-                {% for video in videos %}
                 <li>
                     <p>{{ video }}</p>
                     <video width="320" height="240" controls>
@@ -26,7 +25,6 @@
                         Your browser does not support the video tag.
                     </video>
                 </li>
-                {% endfor %}
             </ul>
             {% else %}
             <div class="empty">
@@ -51,19 +49,13 @@
         <div class="output">
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-            <div class="video">
-                {{messages[0]}}
-                {{messages[1]}}
-                <ul>
-                    <li>
-                        <p>{{ video }}</p>
-                        <video width="320" height="240" controls>
+               
+            
+                        <video controls>
                             <source src="{{ url_for('uploaded_file', filename='predict.mp4') }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                    </li>
-                </ul>
-            </div>
+                    
             {% endif %}
             {% endwith %}
         </div>

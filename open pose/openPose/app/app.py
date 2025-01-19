@@ -23,12 +23,7 @@ def allowed_file(filename):
 # Routes
 @app.route('/')
 def index():
-    videos = os.listdir(app.config['UPLOAD_FOLDER'])
     return render_template('index.html', video = filename)
-
-@app.route('/predict')
-def predict():
-    return render_template('index.html', videos=videos)
 
 
 @app.route('/upload', methods=['POST'])
@@ -47,6 +42,7 @@ def upload_file():
         print(f"Confidence: {confidence:.2f}")
         flash(f"Prediction: {prediction}")
         flash(f"Confidence: {confidence:.2f}")
+        return render_template('index.html', video = filename, predict_video = "predict.mp4")
 
     return redirect(url_for('index'))
 
